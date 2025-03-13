@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../../supabaseClient";
 import { useNavigate } from "react-router-dom";
+import AuthenticatedNavBar from "../components/AuthenticatedNavBar";
 
 function Dashboard() {
   const [session, setSession] = useState(null);
@@ -26,10 +27,6 @@ function Dashboard() {
     return () => subscription.unsubscribe();
   }, [navigate]);
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-  };
-
   if (loading) {
     return (
       <div className="min-vh-100 d-flex align-items-center justify-content-center">
@@ -42,25 +39,7 @@ function Dashboard() {
 
   return (
     <div className="min-vh-100 bg-light">
-      {/* Navigation */}
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container">
-          <a className="navbar-brand" href="#">BillMaster Pro</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <span className="nav-link text-light">Welcome, {session?.user?.email}</span>
-              </li>
-              <li className="nav-item">
-                <button onClick={handleSignOut} className="btn btn-outline-light ms-2">Sign Out</button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <AuthenticatedNavBar userEmail={session?.user?.email} />
 
       {/* Dashboard Content */}
       <div className="container py-5">
@@ -84,56 +63,37 @@ function Dashboard() {
             <div className="card h-100">
               <div className="card-body">
                 <h6 className="card-subtitle mb-2 text-muted">Pending Payments</h6>
-                <h2 className="card-title mb-0">$0.00</h2>
+                <h2 className="card-title mb-0">$0</h2>
               </div>
             </div>
           </div>
           <div className="col-md-3">
             <div className="card h-100">
               <div className="card-body">
-                <h6 className="card-subtitle mb-2 text-muted">Total Revenue</h6>
-                <h2 className="card-title mb-0">$0.00</h2>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div className="card h-100">
-              <div className="card-body">
-                <h6 className="card-subtitle mb-2 text-muted">Active Clients</h6>
+                <h6 className="card-subtitle mb-2 text-muted">Total Clients</h6>
                 <h2 className="card-title mb-0">0</h2>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card h-100">
+              <div className="card-body">
+                <h6 className="card-subtitle mb-2 text-muted">Revenue (MTD)</h6>
+                <h2 className="card-title mb-0">$0</h2>
               </div>
             </div>
           </div>
         </div>
 
         {/* Recent Activity */}
-        <div className="row mb-4">
-          <div className="col">
+        <div className="row">
+          <div className="col-12">
             <div className="card">
-              <div className="card-header d-flex justify-content-between align-items-center">
-                <h5 className="mb-0">Recent Invoices</h5>
-                <button className="btn btn-primary btn-sm">Create Invoice</button>
+              <div className="card-header">
+                <h5 className="card-title mb-0">Recent Activity</h5>
               </div>
               <div className="card-body">
-                <div className="table-responsive">
-                  <table className="table table-hover">
-                    <thead>
-                      <tr>
-                        <th>Invoice #</th>
-                        <th>Client</th>
-                        <th>Amount</th>
-                        <th>Status</th>
-                        <th>Due Date</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td colSpan="6" className="text-center">No invoices found</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                <p className="text-muted text-center mb-0">No recent activity</p>
               </div>
             </div>
           </div>
