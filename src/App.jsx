@@ -1,53 +1,25 @@
-import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Landing from "./pages/Landing";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword";
+import Dashboard from "./pages/Dashboard";
 import "./App.css";
-import { supabase } from "../supabaseClient";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 function App() {
-  const [session, setSession] = useState(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  console.log(session?.user?.email);
-
-  const signOut = async () => {
-    const { error } = await supabase.auth.signOut();
-  };
-
-  const signUp = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-    });
-  };
-
-  if (!session) {
-    return (
-      <>
-        {/* <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />; */}
-        <button onClick={signUp}>Sign in with Google</button>
-      </>
-    );
-  } else {
-    return (
-      <div>
-        <h2>Welcome, {session?.user?.email}</h2>
-        <button onClick={signOut}>Sign out</button>
-      </div>
-    );
-  }
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        {/* Catch-all route - redirects to landing page for any unmatched URL */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
