@@ -37,7 +37,7 @@ function Landing() {
       {/* Navigation */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container">
-          <a className="navbar-brand" href="#">BillMaster Pro</a>
+          <a className="navbar-brand" href="#"> Pro</a>
           <button
             className="navbar-toggler"
             type="button"
@@ -228,7 +228,7 @@ function Landing() {
         <div className="container">
           <div className="row">
             <div className="col-md-4">
-              <h5>BillMaster Pro</h5>
+              <h5> Pro</h5>
               <p className="small">Making billing simple and efficient for businesses worldwide.</p>
             </div>
             <div className="col-md-4">
@@ -241,7 +241,7 @@ function Landing() {
             </div>
             <div className="col-md-4">
               <h5>Contact</h5>
-              <p className="small">Email: support@billmaster.pro<br />Phone: (555) 123-4567</p>
+              <p className="small">Email: support@.pro<br />Phone: (555) 123-4567</p>
             </div>
           </div>
         </div>

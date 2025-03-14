@@ -27,13 +27,16 @@ function AuthenticatedNavBar({ userEmail }) {
               <a className="nav-link" href="/dashboard">Dashboard</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/invoices">Invoices</a>
+              <a className="nav-link" href="/invoices">Billing</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/clients">Clients</a>
+              <a className="nav-link" href="/clients">Customers</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/reports">Reports</a>
+              <a className="nav-link" href="/stock">Stock</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/reports">more</a>
             </li>
           </ul>
           <div className="navbar-nav">

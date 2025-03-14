@@ -1,0 +1,24 @@
+.stock-page .quantity-input,
+.stock-page .price-input {  width: 100px;
+}
+.stock-page .table th,.stock-page .table td {
+  vertical-align: middle;}
+.stock-page .card {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);}
+.stock-page .card-header {
+  font-weight: 500;}
+.stock-page .table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+
+
+
+
+
+
+
+
+
